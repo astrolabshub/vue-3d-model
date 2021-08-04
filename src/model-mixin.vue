@@ -477,7 +477,7 @@ export default {
     createGrid() {
       this.gridHelper = new GridHelper(this.gridSize, this.divisions);
       this.gridHelper.rotateX(Math.PI / 2.0);
-      this.helpersNode.add(this.gridHelper)
+      // this.helpersNode.add(this.gridHelper)
     }
   },
 };
