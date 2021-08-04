@@ -29,7 +29,7 @@ import {
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { getSize, getCenter } from './util';
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+// import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 const suportWebGL = (() => {
   try {
@@ -157,10 +157,12 @@ export default {
 
       return result;
     },
+    /*
     ...mapGetters('scene', {
       scene: 'getScene',
       helpersNode: 'getHelpersNode',
     }),
+    */
   },
   mounted() {
     if (this.width === undefined || this.height === undefined) {
