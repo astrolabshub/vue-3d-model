@@ -25,9 +25,11 @@ import {
   HemisphereLight,
   DirectionalLight,
   LinearEncoding,
+  GridHelper,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { getSize, getCenter } from './util';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 const suportWebGL = (() => {
   try {
@@ -135,6 +137,11 @@ export default {
       allLights: [],
       clock: typeof performance === 'undefined' ? Date : performance,
       reqId: null, // requestAnimationFrame id
+      grid: {
+        gridSize: 10,
+        divisions: 10,
+      },
+      gridHelper: null,
     };
   },
   computed: {
@@ -150,6 +157,10 @@ export default {
 
       return result;
     },
+    ...mapGetters('scene', {
+      scene: 'getScene',
+      helpersNode: 'getHelpersNode',
+    }),
   },
   mounted() {
     if (this.width === undefined || this.height === undefined) {
@@ -181,6 +192,8 @@ export default {
     this.$el.addEventListener('click', this.onClick, false);
 
     window.addEventListener('resize', this.onResize, false);
+
+    this.createGrid();
 
     this.animate();
   },
@@ -466,6 +479,11 @@ export default {
     render() {
       this.renderer.render(this.scene, this.camera);
     },
+    createGrid() {
+      this.gridHelper = new GridHelper(this.gridSize, this.divisions);
+      this.gridHelper.rotateX(Math.PI / 2.0);
+      this.helpersNode.add(this.gridHelper)
+    }
   },
 };
 
