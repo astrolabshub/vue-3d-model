@@ -140,7 +140,9 @@ export default {
         gridSize: 10,
         divisions: 10,
       },
-      gridHelper: null,
+      grid1: null,
+      grid2: null,
+      grid3: null,
     };
   },
   computed: {
@@ -475,10 +477,15 @@ export default {
       this.renderer.render(this.scene, this.camera);
     },
     createGrid() {
-      this.gridHelper = new GridHelper(this.gridSize, this.divisions);
-      this.gridHelper.rotateX(Math.PI / 2.0);
-      this.scene.add(this.gridHelper)
-      // this.helpersNode.add(this.gridHelper)
+      this.grid1 = new GridHelper(this.gridSize, this.divisions);
+      this.scene.add(this.grid1)
+      this.grid2 = new GridHelper(this.gridSize, this.divisions);
+      this.grid2.rotateX(Math.PI / 2.0);
+      this.scene.add(this.grid2)
+      this.grid3 = new GridHelper(this.gridSize, this.divisions);
+      this.grid3.rotateY(Math.PI / 2.0);
+      this.scene.add(this.grid3)
+      // this.helpersNode.add(this.grid1)
     }
   },
 };
