@@ -49,6 +49,9 @@ export default {
     src: {
       type: String,
     },
+    srcObject: {
+      type: Object,
+    },
     width: {
       type: Number,
     },
@@ -214,6 +217,9 @@ export default {
   watch: {
     src() {
       this.load();
+    },
+    srcObject() {
+      this.parse();
     },
     rotation: {
       deep: true,
