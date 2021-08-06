@@ -318,7 +318,7 @@ export default {
 
       this.raycaster.setFromCamera(this.mouse, this.camera);
 
-      const intersects = this.raycaster.intersectObject(this.object, true);
+      const intersects = this.raycaster.intersectObjects(this.scene.children, true);
 
       return (intersects && intersects.length) > 0 ? intersects[0] : null;
     },
