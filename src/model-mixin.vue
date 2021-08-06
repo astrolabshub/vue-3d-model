@@ -322,10 +322,9 @@ export default {
       console.log(intersects)
       var newIntersects = []
       intersects.forEach(intersection => {
-        if (typeof intersection.object.type === 'Object3D' || intersection.type === 'Mesh' || intersection.type === 'Group') {
-          return
-        } else {
-          intersects.Array.remove(intersection)
+        if (typeof intersection.object.type !== 'Object3D' && intersection.type !== 'Mesh' && intersection.type !== 'Group') {
+          const index = intersects.indexOf(intersection)
+          intersects.splice(index, 1)
         }
       })
 
