@@ -323,7 +323,8 @@ export default {
       intersects.forEach(child => {
         console.log(child)
         console.log(typeof child.object)
-        if (typeof child.object === 'Object3D' || child.type === 'Mesh' || child.type === 'Group') {
+        console.log(child.object.type)
+        if (typeof child.object.type === 'Object3D' || child.type === 'Mesh' || child.type === 'Group') {
           newIntersects.add(child)
         } 
       })
