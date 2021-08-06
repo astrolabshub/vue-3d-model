@@ -321,6 +321,7 @@ export default {
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
       console.log(intersects)
       intersects.forEach(intersection => {
+        console.log(intersection.object.type)
         if (typeof intersection.object.type === 'GridHelper' && intersection.type === 'ArrowHelper' && intersection.type === 'BoxHelper') {
           const index = intersects.indexOf(intersection)
           console.log(index)
