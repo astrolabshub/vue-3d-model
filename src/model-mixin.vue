@@ -325,7 +325,7 @@ export default {
         if (typeof intersection.object.type === 'Object3D' || intersection.type === 'Mesh' || intersection.type === 'Group') {
           return
         } else {
-          intersects.remove(intersection)
+          intersects.Array.remove(intersection)
         }
       })
 
