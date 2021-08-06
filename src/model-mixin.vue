@@ -322,7 +322,7 @@ export default {
       console.log(intersects)
       var newIntersects = []
       intersects.forEach(intersection => {
-        if (typeof intersection.object.type !== 'Object3D' && intersection.type !== 'Mesh' && intersection.type !== 'Group') {
+        if (typeof intersection.object.type === 'GridHelper' && intersection.type === 'ArrowHelper' && intersection.type === 'BoxHelper') {
           const index = intersects.indexOf(intersection)
           intersects.splice(index, 1)
         }
