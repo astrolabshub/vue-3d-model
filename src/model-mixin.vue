@@ -319,8 +319,14 @@ export default {
       this.raycaster.setFromCamera(this.mouse, this.camera);
 
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+      var newIntersects = []
+      intersects.forEach(child => {
+        if (child.type === 'Object3D' || child.type === 'Mesh' || child.type === 'Group') {
+          newIntersects.add(child)
+        } 
+      })
 
-      return (intersects && intersects.length) > 0 ? intersects[0] : null;
+      return (newIntersects && newIntersects.length) > 0 ? newIntersects[0] : null;
     },
     update() {
       this.updateRenderer();
