@@ -321,8 +321,9 @@ export default {
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
       var newIntersects = []
       intersects.forEach(child => {
-        console.log(typeof child)
-        if (typeof child === 'Object3D' || child.type === 'Mesh' || child.type === 'Group') {
+        console.log(child)
+        console.log(typeof child.object)
+        if (typeof child.object === 'Object3D' || child.type === 'Mesh' || child.type === 'Group') {
           newIntersects.add(child)
         } 
       })
