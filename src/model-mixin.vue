@@ -322,7 +322,7 @@ export default {
       console.log(intersects)
       intersects.forEach(intersection => {
         console.log(intersection.object.type)
-        if (typeof intersection.object.type === 'GridHelper' && intersection.type === 'ArrowHelper' && intersection.type === 'BoxHelper') {
+        if (intersection.object.type === 'GridHelper' && intersection.type === 'ArrowHelper' && intersection.type === 'BoxHelper') {
           const index = intersects.indexOf(intersection)
           console.log(index)
           intersects.splice(index, 1)
