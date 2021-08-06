@@ -26,6 +26,7 @@ import {
   DirectionalLight,
   LinearEncoding,
   GridHelper,
+  ArrowHelper,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { getSize, getCenter } from './util';
@@ -495,28 +496,28 @@ export default {
       // this.helpersNode.add(this.grid1)
     },
     addAxisArrows () {
-      var dir = new THREE.Vector3(1, 0, 0)
+      var dir = new Vector3(1, 0, 0)
       dir.normalize()
-      var origin = new THREE.Vector3(0, 0, 0)
+      var origin = new Vector3(0, 0, 0)
       var length = 0.5
       var hex = 0xff0000
-      var arrowX = new THREE.ArrowHelper(dir, origin, length, hex)
+      var arrowX = new ArrowHelper(dir, origin, length, hex)
       this.scene.add(arrowX)
 
-      dir = new THREE.Vector3(0, 1, 0)
+      dir = new Vector3(0, 1, 0)
       dir.normalize()
-      origin = new THREE.Vector3(0, 0, 0)
+      origin = new Vector3(0, 0, 0)
       length = 0.5
       hex = 0x00ff00
-      var arrowY = new THREE.ArrowHelper(dir, origin, length, hex)
+      var arrowY = new ArrowHelper(dir, origin, length, hex)
       this.scene.add(arrowY)
 
-      dir = new THREE.Vector3(0, 0, 1)
+      dir = new Vector3(0, 0, 1)
       dir.normalize()
-      origin = new THREE.Vector3(0, 0, 0)
+      origin = new Vector3(0, 0, 0)
       length = 0.5
       hex = 0x0000ff
-      var arrowZ = new THREE.ArrowHelper(dir, origin, length, hex)
+      var arrowZ = new ArrowHelper(dir, origin, length, hex)
       this.scene.add(arrowZ)
     },
   },
