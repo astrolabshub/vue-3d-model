@@ -327,6 +327,7 @@ export default {
           intersects.splice(index, 1)
         }
       })
+      console.log(intersects)
 
       return (intersects && intersects.length) > 0 ? intersects[0] : null;
     },
