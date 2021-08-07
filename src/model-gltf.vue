@@ -42,7 +42,6 @@ export default {
 
       if (this.object) {
         this.wrapper.remove(this.object);
-        console.log('hello')
       }
 
       this.loader.load(this.src, (data) => {

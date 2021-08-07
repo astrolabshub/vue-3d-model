@@ -320,17 +320,22 @@ export default {
 
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
       console.log(intersects)
+      var newIntersects = []
       intersects.forEach(intersection => {
         console.log(intersection.object.type)
         if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line") {
           const index = intersects.indexOf(intersection)
           console.log(index)
           intersects.splice(index, 1)
+        } else {
+          newIntersects.add(intersection)
         }
       })
       console.log(intersects)
+      console.log(newIntersects)
 
-      return (intersects && intersects.length) > 0 ? intersects[0] : null;
+
+      return (newIntersects && newIntersects.length) > 0 ? newIntersects[0] : null;
     },
     update() {
       this.updateRenderer();
