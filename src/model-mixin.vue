@@ -324,11 +324,11 @@ export default {
       intersects.forEach(intersection => {
         console.log(intersection.object.type)
         if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line") {
-          const index = intersects.indexOf(intersection)
+          // const index = intersects.indexOf(intersection)
           console.log(index)
-          intersects.splice(index, 1)
+          // intersects.splice(index, 1)
         } else {
-          newIntersects.add(intersection)
+          newIntersects.push(intersection)
         }
       })
       console.log(intersects)
