@@ -308,7 +308,7 @@ export default {
         multikeyPressed = true
       }
       console.log(multikeyPressed)
-      this.$emit('on-click', (intersected, multikeyPressed));
+      this.$emit('on-click', {object: intersected, multikey: multikeyPressed});
     },
     pick(x, y) {
       if (!this.object) return null;
