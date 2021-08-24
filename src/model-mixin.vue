@@ -307,6 +307,7 @@ export default {
       if (event.ctrlKey || event.shiftKey) {
         multikeyPressed = true
       }
+      console.log(multikeyPressed)
       this.$emit('on-click', (intersected, multikeyPressed));
     },
     pick(x, y) {
