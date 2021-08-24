@@ -303,7 +303,11 @@ export default {
       if (!this.hasListener['on-click']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-click', intersected);
+      var multikeyPressed = false
+      if (event.ctrlKey || event.shiftKey) {
+        multikeyPressed = true
+      }
+      this.$emit('on-click', (intersected, multikeyPressed));
     },
     pick(x, y) {
       if (!this.object) return null;
