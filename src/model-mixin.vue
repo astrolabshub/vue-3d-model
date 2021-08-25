@@ -338,6 +338,8 @@ export default {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
           // intersects.splice(index, 1)
+        } else if (intersection.object.name === "TransformHelper") {
+          console.log('TH')
         } else {
           newIntersects.push(intersection)
         }
