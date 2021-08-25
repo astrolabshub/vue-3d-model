@@ -330,10 +330,10 @@ export default {
       this.raycaster.setFromCamera(this.mouse, this.camera);
 
       const intersects = this.raycaster.intersectObjects(this.scene.children, true);
-      // console.log(intersects)
+      console.log(intersects)
       var newIntersects = []
       intersects.forEach(intersection => {
-        // console.log(intersection.object.type)
+        console.log(intersection.object.type)
         if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line" || intersection.object.type === "Group" || intersection.object.type === "TransformControlsPlane" || intersection.object.type === "TransformControlsGizmo") {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
@@ -345,7 +345,7 @@ export default {
         }
       })
       // console.log(intersects)
-      // console.log(newIntersects)
+      console.log(newIntersects)
 
 
       return (newIntersects && newIntersects.length) > 0 ? newIntersects[0] : null;
