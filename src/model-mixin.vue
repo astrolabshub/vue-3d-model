@@ -27,6 +27,7 @@ import {
   LinearEncoding,
   GridHelper,
   ArrowHelper,
+  MOUSE,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { getSize, getCenter } from './util';
