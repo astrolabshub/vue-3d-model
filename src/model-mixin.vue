@@ -338,7 +338,7 @@ export default {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
           // intersects.splice(index, 1)
-        } else if (intersection.object.children[0].type === "TransformControlsGizmo") {
+        } else if (intersection.children[0].type === "TransformControlsGizmo") {
           console.log('TH!!!!!!!!!!!!!!!!!!!')
         } else {
           newIntersects.push(intersection)
