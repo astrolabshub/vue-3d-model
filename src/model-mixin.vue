@@ -184,8 +184,8 @@ export default {
     this.controls.type = 'orbit';
     this.controls.mouseButtons = {
       LEFT: null,
-      MIDDLE: THREE.MOUSE.PAN,
-      RIGHT: THREE.MOUSE.ROTATE
+      MIDDLE: MOUSE.PAN,
+      RIGHT: MOUSE.ROTATE
     };
 
     this.scene.add(this.wrapper);
