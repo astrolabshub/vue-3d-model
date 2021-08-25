@@ -334,7 +334,7 @@ export default {
       var newIntersects = []
       intersects.forEach(intersection => {
         // console.log(intersection.object.type)
-        if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line" || intersection.object.type ==="Group" || intersection.object.type === "Mesh") {
+        if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line" || intersection.object.type ==="Group" || intersection.object.type === "Mesh" || intersection.object.type === "TransformControlsPlane" || intersection.object.type === "TransformControlsGizmo") {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
           // intersects.splice(index, 1)
