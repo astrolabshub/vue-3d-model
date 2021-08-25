@@ -333,6 +333,7 @@ export default {
       // console.log(intersects)
       var newIntersects = []
       intersects.forEach(intersection => {
+        console.log(intersection.object.name)
         // console.log(intersection.object.type)
         if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line" || intersection.object.type ==="Group" || intersection.object.type === "Mesh") {
           // const index = intersects.indexOf(intersection)
