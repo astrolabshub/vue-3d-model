@@ -338,7 +338,7 @@ export default {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
           // intersects.splice(index, 1)
-        } else if (intersection.object.type === "Mesh" && intersection.object.name !== "") {
+        } else if (intersection.object.type === "Mesh" && (intersection.object.name.includes('X') || intersection.object.name.includes('Y') || intersection.object.name.includes('Z') || intersection.object.name.includes('E') || intersection.object.name.includes('START') || intersection.object.name.includes('END'))) {
           console.log('TH!!!!!!!!!!!!!!!!!!!')
         } else {
           newIntersects.push(intersection)
