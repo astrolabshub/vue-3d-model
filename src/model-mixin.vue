@@ -338,7 +338,7 @@ export default {
           // const index = intersects.indexOf(intersection)
           // console.log('not desirable object')
           // intersects.splice(index, 1)
-        } else if (intersection.object.type === "Mesh" && intersection.object.parent.type === "TransformControlsGizmo") {
+        } else if (intersection.object.type === "Mesh" && intersection.object.name !== "") {
           console.log('TH!!!!!!!!!!!!!!!!!!!')
         } else {
           newIntersects.push(intersection)
