@@ -25,6 +25,9 @@ import {
   HemisphereLight,
   DirectionalLight,
   LinearEncoding,
+  GridHelper,
+  ArrowHelper,
+  MOUSE,
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { getSize, getCenter } from './util';
@@ -47,6 +50,9 @@ export default {
   props: {
     src: {
       type: String,
+    },
+    srcObject: {
+      type: Object,
     },
     width: {
       type: Number,
@@ -138,6 +144,13 @@ export default {
       allLights: [],
       clock: typeof performance === 'undefined' ? Date : performance,
       reqId: null, // requestAnimationFrame id
+      grid: {
+        gridSize: 10,
+        divisions: 10,
+      },
+      grid1: null,
+      grid2: null,
+      grid3: null,
     };
   },
   computed: {
@@ -172,6 +185,11 @@ export default {
 
     this.controls = new OrbitControls(this.camera, this.$el);
     this.controls.type = 'orbit';
+    this.controls.mouseButtons = {
+      LEFT: null,
+      MIDDLE: MOUSE.PAN,
+      RIGHT: MOUSE.ROTATE
+    };
 
     this.scene.add(this.wrapper);
 
@@ -184,6 +202,9 @@ export default {
     this.$el.addEventListener('click', this.onClick, false);
 
     window.addEventListener('resize', this.onResize, false);
+
+    this.createGrid();
+    this.addAxisArrows();
 
     this.animate();
   },
@@ -206,6 +227,9 @@ export default {
   watch: {
     src() {
       this.load();
+    },
+    srcObject() {
+      this.parse();
     },
     rotation: {
       deep: true,
@@ -287,7 +311,12 @@ export default {
       if (!this.hasListener['on-click']) return;
 
       const intersected = this.pick(event.clientX, event.clientY);
-      this.$emit('on-click', intersected);
+      var multikeyPressed = false
+      if (event.ctrlKey || event.shiftKey) {
+        multikeyPressed = true
+      }
+      console.log(multikeyPressed)
+      this.$emit('on-click', {object: intersected, multikey: multikeyPressed});
     },
     pick(x, y) {
       if (!this.object) return null;
@@ -302,9 +331,26 @@ export default {
 
       this.raycaster.setFromCamera(this.mouse, this.camera);
 
-      const intersects = this.raycaster.intersectObject(this.object, true);
+      const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+      console.log(intersects)
+      var newIntersects = []
+      intersects.forEach(intersection => {
+        console.log(intersection.object.type)
+        if (intersection.object.type === 'GridHelper' || intersection.object.type === 'ArrowHelper' || intersection.object.type === 'BoxHelper' || intersection.object.type ==="Line" || intersection.object.type === "Group" || intersection.object.type === "TransformControlsPlane" || intersection.object.type === "TransformControlsGizmo") {
+          // const index = intersects.indexOf(intersection)
+          // console.log('not desirable object')
+          // intersects.splice(index, 1)
+        } else if (intersection.object.type === "Mesh" && (intersection.object.name.includes('X') || intersection.object.name.includes('Y') || intersection.object.name.includes('Z') || intersection.object.name.includes('E') || intersection.object.name.includes('START') || intersection.object.name.includes('END'))) {
+          console.log('TH!!!!!!!!!!!!!!!!!!!')
+        } else {
+          newIntersects.push(intersection)
+        }
+      })
+      // console.log(intersects)
+      console.log(newIntersects)
 
-      return (intersects && intersects.length) > 0 ? intersects[0] : null;
+
+      return (newIntersects && newIntersects.length) > 0 ? newIntersects[0] : null;
     },
     update() {
       this.updateRenderer();
@@ -468,6 +514,42 @@ export default {
     },
     render() {
       this.renderer.render(this.scene, this.camera);
+    },
+    createGrid() {
+      this.grid1 = new GridHelper(this.gridSize, this.divisions);
+      this.scene.add(this.grid1)
+      this.grid2 = new GridHelper(this.gridSize, this.divisions);
+      this.grid2.rotateX(Math.PI / 2.0);
+      this.scene.add(this.grid2)
+      this.grid3 = new GridHelper(this.gridSize, this.divisions);
+      this.grid3.rotateY(Math.PI / 2.0);
+      this.scene.add(this.grid3)
+      // this.helpersNode.add(this.grid1)
+    },
+    addAxisArrows () {
+      var dir = new Vector3(1, 0, 0)
+      dir.normalize()
+      var origin = new Vector3(0, 0, 0)
+      var length = 0.5
+      var hex = 0xff0000
+      var arrowX = new ArrowHelper(dir, origin, length, hex)
+      this.scene.add(arrowX)
+
+      dir = new Vector3(0, 1, 0)
+      dir.normalize()
+      origin = new Vector3(0, 0, 0)
+      length = 0.5
+      hex = 0x00ff00
+      var arrowY = new ArrowHelper(dir, origin, length, hex)
+      this.scene.add(arrowY)
+
+      dir = new Vector3(0, 0, 1)
+      dir.normalize()
+      origin = new Vector3(0, 0, 0)
+      length = 0.5
+      hex = 0x0000ff
+      var arrowZ = new ArrowHelper(dir, origin, length, hex)
+      this.scene.add(arrowZ)
     },
   },
 };

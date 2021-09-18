@@ -55,6 +55,24 @@ export default {
         this.$emit('on-error', err);
       });
     },
+    parse() {
+      if (!this.srcObject) return;
+
+      if (this.object) {
+        this.wrapper.remove(this.object);
+        console.log('hello')
+      }
+
+      this.loader.parse(this.srcObject, (data) => {
+        this.addObject(data.scene);
+
+        this.$emit('on-load');
+      }, (xhr) => {
+        this.$emit('on-progress', xhr);
+      }, (err) => {
+        this.$emit('on-error', err);
+      })
+    }
   },
 };
 </script>
